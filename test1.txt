@@ -1,0 +1,15 @@
+<?php
+$dbconn = pg_connect('host = localhost port = 5432 dbname=pgadmin user=postgres password=Hina1006');
+if(!$dbconn){
+    exit('DB Connect Failed!!');
+}
+$result = pg_query_params(
+    $db_conn,
+    'INSERT INTO item(id,name,price) VALUES ($1,$2,$3)',
+    array($_POST['id'],$_POST['name'],$_POST['price'])
+);
+if($result){
+    exit('INSERT Failed!!');
+}
+header('Location: http://localhost/list.php');
+?>
